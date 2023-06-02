@@ -70,6 +70,8 @@ public class GUI {
 		
 		BotaoInfo.infoButton();
 		
+		GUIDelete.deleteButton();
+		
 		gamePanel = new JPanel(new GridBagLayout());
 		gamePanel.setBackground(Color.DARK_GRAY);
 		grid = new GridBagConstraints();

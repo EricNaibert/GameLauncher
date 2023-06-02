@@ -85,8 +85,7 @@ public class BotaoInfo {
 				panel.add(labelInfo2, c);
 				
 				JLabel labelInfo3 = new JLabel();
-				labelInfo3.setText("<html><p><b>#3</b> - Na atual versão, não é possível adicionar um jogo sem a cover Image.</p> "
-						+ "<p>Tal como não é possível remover os atalhos criados.</p></html>");
+				labelInfo3.setText("<html><p><b>#3</b> - Para não ter problemas, adicione os diretórios sem apas no inicio e fim.</p></html>");
 				labelInfo3.setFont(new Font("Arial", 0, 25));
 				labelInfo3.setForeground(Color.white);
 				c.gridx = 1;
@@ -110,7 +109,7 @@ public class BotaoInfo {
 				panel.add(labelInfo5, c);
 				
 				JLabel labelVersion = new JLabel();
-				labelVersion.setText("Versão 2.1");
+				labelVersion.setText("Versão 2.2.0");
 				labelVersion.setFont(new Font("Arial", 2, 17));
 				labelVersion.setForeground(Color.white);
 				c.gridx = 1;

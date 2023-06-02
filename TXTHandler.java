@@ -90,5 +90,30 @@ public class TXTHandler {
 		}
 
 	}
+	
+	public static void deletarTXT() {
+
+		try {
+			
+			String path1 = home+File.separator+"GameLauncher"+File.separator+"pathGameSave.txt";
+			String path2 = home+File.separator+"GameLauncher"+File.separator+"pathCoverSave.txt";
+
+			FileWriter fileWriter = new FileWriter(path1);
+			FileWriter fileWriter2 = new FileWriter(path2);
+
+			PrintWriter printWriter = new PrintWriter(fileWriter);
+			PrintWriter printWriter2 = new PrintWriter(fileWriter2);
+			printWriter.println(DeleteGame.deleteArrayGame);
+			printWriter2.println(DeleteGame.deleteArrayCover);
+
+			printWriter.close();
+			printWriter2.close();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 
 }
