@@ -56,5 +56,18 @@ public class ButtonColorChanger {
 		BotaoInfo.infoButton.setIcon(addInfoIcon);
 
 	}
+	
+	public static void changeToRed() {
+
+		ImageIcon addButtonIcon = new ImageIcon(images.ImagesSetUp.addButtonRed);
+		ImageIcon refreshButtonIcon = new ImageIcon(images.ImagesSetUp.refreshButtonRed);
+		ImageIcon addSettingsIcon = new ImageIcon(images.ImagesSetUp.settingsButtonRed);
+		ImageIcon addInfoIcon = new ImageIcon(images.ImagesSetUp.infoButtonRed);
+		GUI.addButton.setIcon(addButtonIcon);
+		GUI.refreshButton.setIcon(refreshButtonIcon);
+		BotaoSettings.settingsButton.setIcon(addSettingsIcon);
+		BotaoInfo.infoButton.setIcon(addInfoIcon);
+
+	}
 
 }

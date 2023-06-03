@@ -84,6 +84,8 @@ public class AdicionarJogoAoPath {
 			
 			if(getGamePath.isEmpty() || getCoverPath.isEmpty()) {
 				JOptionPane.showMessageDialog(frame, "Por favor, adicione o diretório do jogo e cover");
+			} else if(getGamePath.contains("\"") || getCoverPath.contains("\"")){
+				JOptionPane.showMessageDialog(GUI.frame, "Por favor, adicione os diretórios sem aspas");
 			} else {
 				
 				if(TXTHandler.linhaGame.length()>4 && firstTime == true) {

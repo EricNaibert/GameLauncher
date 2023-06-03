@@ -78,7 +78,6 @@ public class BotaoSettings {
 				dimension.width = 55;
 
 				JButton buttonBlue = new JButton();
-				buttonBlue.setText("Azul");
 				buttonBlue.setIcon(new ImageIcon(images.ImagesSetUp.ColorBlue));
 				buttonBlue.addActionListener(actionListenerBlue);
 				buttonBlue.setPreferredSize(dimension);
@@ -101,12 +100,15 @@ public class BotaoSettings {
 				buttonLime.addActionListener(actionListenerLime);
 				buttonLime.setPreferredSize(dimension);
 				panel.add(buttonLime);
-
-
+				
+				JButton buttonRed = new JButton();
+				buttonRed.setIcon(new ImageIcon(images.ImagesSetUp.ColorRed));
+				buttonRed.addActionListener(actionListenerRed);
+				buttonRed.setPreferredSize(dimension);
+				panel.add(buttonRed);
 
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
-
 
 			}
 		};
@@ -207,6 +209,31 @@ public class BotaoSettings {
 				PrintWriter printWriter = new PrintWriter(fileWriter);
 				
 				printWriter.println("lime");
+
+				printWriter.close();
+
+			} catch (IOException exception) {
+				// TODO Auto-generated catch block
+				exception.printStackTrace();
+			}
+
+		}
+	};
+	
+	private static ActionListener actionListenerRed = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			ButtonColorChanger.changeToRed();
+			
+			try {
+
+				FileWriter fileWriter = new FileWriter(path);
+
+				PrintWriter printWriter = new PrintWriter(fileWriter);
+				
+				printWriter.println("red");
 
 				printWriter.close();
 
