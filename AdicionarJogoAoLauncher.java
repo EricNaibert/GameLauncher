@@ -55,7 +55,7 @@ public class AdicionarJogoAoLauncher {
 					ImageIcon icone = new ImageIcon(storageSavedCoverPath[i]);
 
 					Image image = icone.getImage();
-					Image imageNew = image.getScaledInstance(205, 270, java.awt.Image.SCALE_SMOOTH);
+					Image imageNew = image.getScaledInstance(200, 270, java.awt.Image.SCALE_SMOOTH);
 					ImageIcon iconeFinal = new ImageIcon(imageNew);
 
 					GUI.gameCard.setIcon(iconeFinal);

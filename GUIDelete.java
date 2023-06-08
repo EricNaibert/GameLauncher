@@ -40,7 +40,6 @@ public class GUIDelete {
 				AdicionarJogoAoLauncher.deleteRefresh = true;
 				
 				frame = new JFrame();
-				frame.setTitle("Deletar Jogo do Launcher");
 				frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 				frame.setSize(1200, 620);
 				frame.setIconImage(gameLauncherIcon.getImage());
@@ -58,10 +57,18 @@ public class GUIDelete {
 						BorderFactory.createMatteBorder(0, 40, 0, 40, Color.DARK_GRAY), BorderFactory.createMatteBorder(0, 0, 4, 0, Color.LIGHT_GRAY)));
 				headerPanel.setBackground(Color.DARK_GRAY);
 
-				JLabel headerLabel = new JLabel("Deletar Jogo do Launcher");
+				JLabel headerLabel = new JLabel();
 				headerLabel.setFont(new Font("Arial", Font.BOLD, 24));
 				headerLabel.setForeground(Color.WHITE);
 				headerPanel.add(headerLabel);
+				
+				if(TXTHandler.returnLanguage==1) {
+					frame.setTitle("Delete Game from Launcher");
+					headerLabel.setText("Delete Game from Launcher");
+				} else {
+					frame.setTitle("Deletar Jogo do Launcher");
+					headerLabel.setText("Deletar Jogo do Launcher");
+				}
 
 				gamePanel = new JPanel(new GridBagLayout());
 				gamePanel.setBackground(Color.DARK_GRAY);

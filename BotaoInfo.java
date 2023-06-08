@@ -1,6 +1,8 @@
 package gameLauncher;
 
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -8,6 +10,9 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.net.URI;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -60,7 +65,6 @@ public class BotaoInfo {
 				panel.add(labelIcon, c);
 
 				JLabel label = new JLabel();
-				label.setText("Informações");
 				label.setFont(new Font("Arial", 1, 25));
 				label.setForeground(Color.white);
 				c.gridx = 1;
@@ -68,7 +72,6 @@ public class BotaoInfo {
 				panel.add(label, c);
 				
 				JLabel labelInfo = new JLabel();
-				labelInfo.setText("#1 - Use o botão \"Adicionar\" para adicionar um jogo ao Launcher.");
 				labelInfo.setFont(new Font("Arial", 0, 25));
 				labelInfo.setForeground(Color.white);
 				c.gridx = 1;
@@ -76,8 +79,6 @@ public class BotaoInfo {
 				panel.add(labelInfo, c);
 				
 				JLabel labelInfo2 = new JLabel();
-				labelInfo2.setText("<html><p><b>#2</b> - Você deve informar o diretório do jogo e</p>"
-						+ "<p> o diretório da \"cover image\".</p></html>");
 				labelInfo2.setFont(new Font("Arial", 0, 25));
 				labelInfo2.setForeground(Color.white);
 				c.gridx = 1;
@@ -85,7 +86,6 @@ public class BotaoInfo {
 				panel.add(labelInfo2, c);
 				
 				JLabel labelInfo3 = new JLabel();
-				labelInfo3.setText("<html><p><b>#3</b> - Para não ter problemas, adicione os diretórios sem apas no inicio e fim.</p></html>");
 				labelInfo3.setFont(new Font("Arial", 0, 25));
 				labelInfo3.setForeground(Color.white);
 				c.gridx = 1;
@@ -93,28 +93,64 @@ public class BotaoInfo {
 				panel.add(labelInfo3, c);
 				
 				JLabel labelInfo4 = new JLabel();
-				labelInfo4.setText("<html><p><b>#4</b> - Para os jogos, são suportados executáveis e atalhos \".exe\", \".lnk\", \".url\" etc.</p></html>");
 				labelInfo4.setFont(new Font("Arial", 0, 25));
 				labelInfo4.setForeground(Color.white);
 				c.gridx = 1;
 				c.gridy = 6;
 				panel.add(labelInfo4, c);
 				
-				JLabel labelInfo5 = new JLabel();
-				labelInfo5.setText("<html><p><b>#5</b> - Para imagens, são suportados \".jpeg\" e \".png\".</p></html>");
-				labelInfo5.setFont(new Font("Arial", 0, 25));
-				labelInfo5.setForeground(Color.white);
+				JLabel labelContact = new JLabel();
+				labelContact.setFont(new Font("Arial", 0, 25));
+				labelContact.setForeground(Color.YELLOW);
+				labelContact.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				labelContact.addMouseListener(new MouseAdapter() {
+				
+				public void mouseClicked(MouseEvent e) {
+					
+					try {
+						Desktop.getDesktop().browse(new URI("https://github.com/EricNaibert"));
+						
+					} catch (Exception e2) {
+						e2.printStackTrace();
+
+					}
+				}
+				
+				
+				});
 				c.gridx = 1;
 				c.gridy = 7;
-				panel.add(labelInfo5, c);
+				panel.add(labelContact, c);
 				
 				JLabel labelVersion = new JLabel();
-				labelVersion.setText("Versão 2.2.0");
 				labelVersion.setFont(new Font("Arial", 2, 17));
 				labelVersion.setForeground(Color.white);
 				c.gridx = 1;
 				c.gridy = 8;
 				panel.add(labelVersion, c);
+				
+				if(TXTHandler.returnLanguage==1) {
+					label.setText("Informations");
+					labelInfo.setText("#1 - Use the Button \"Add\" to add a game to the launcher.");
+					labelInfo2.setText("<html><p><b>#2</b> - You must type the game directory AND</p>"
+							+ "<p> the \"cover image\" directory.</p></html>");
+					labelInfo3.setText("<html><p><b>#3</b> - For games, the supported extensions are: \".exe\", \".jar\", \".lnk\" and \".url\".</p></html>");
+					labelInfo4.setText("<html><p><b>#4</b> - For images, the supported extensions are: \".jpeg\" and \".png\".</p></html>");
+					labelVersion.setText("Version 2.3.0");
+					
+					labelContact.setText("Contact me on GitHub!");
+					
+				} else {
+					label.setText("Informações");
+					labelInfo.setText("#1 - Use o botão \"Adicionar\" para adicionar um jogo ao launcher.");
+					labelInfo2.setText("<html><p><b>#2</b> - Você deve informar o diretório do jogo e</p>"
+							+ "<p> o diretório da \"cover image\".</p></html>");
+					labelInfo3.setText("<html><p><b>#3</b> - Para os jogos, as extensões suportadas são: \".exe\", \".jar\", \".lnk\", \".url\".</p></html>");
+					labelInfo4.setText("<html><p><b>#4</b> - Para imagens, as extensões suportadas são \".jpeg\" e \".png\".</p></html>");
+					labelVersion.setText("Versão 2.3.0");
+					
+					labelContact.setText("Entre em contato comigo no GitHub!");
+				}
 				
 
 				frame.setLocationRelativeTo(null);

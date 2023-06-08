@@ -107,6 +107,7 @@ public class GUI {
 		panel.add(headerPanel, BorderLayout.NORTH);
 		panel.add(scroll, BorderLayout.CENTER);
 		
+		TXTHandler.readLanguage();
 		TXTHandler.lerColor();
 		AdicionarJogoAoLauncher.adicionarJogo();
 		

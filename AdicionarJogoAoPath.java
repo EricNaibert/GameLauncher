@@ -25,7 +25,7 @@ public class AdicionarJogoAoPath {
 	private static JFrame frame;
 	private static JPanel panel;
 	public static GridBagConstraints c;
-	private static JLabel label;
+	private static JLabel label, label2, labelTittle;
 	private static JTextField textFieldJogo;
 	private static JTextField textFieldCover;
 	private static JButton addButton;
@@ -34,9 +34,8 @@ public class AdicionarJogoAoPath {
 	public static void addGame() {
 
 		frame = new JFrame();
-		frame.setSize(500, 300);
+		frame.setSize(600, 300);
 		frame.setResizable(false);
-		frame.setTitle("Adicionar na Biblioteca");
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		frame.setIconImage(GUI.gameLauncherIcon.getImage());
 
@@ -49,24 +48,36 @@ public class AdicionarJogoAoPath {
 		c.insets = new Insets(0, 5, 10, 5);
 		frame.add(panel);
 
-		label = new JLabel();
-		label.setText("Adicionar Jogo");
-		label.setFont(new Font("Arial", 1, 25));
-		label.setForeground(Color.white);
+		labelTittle = new JLabel();
+		labelTittle.setFont(new Font("Arial", 1, 25));
+		labelTittle.setForeground(Color.white);
 		c.gridx = 1;
 		c.gridy = 1;
-		panel.add(label, c);
+		panel.add(labelTittle, c);
 
 		campoJogo();
 		campoCover();
 
 		addButton = new JButton();
-		addButton.setText("Adicionar");
 		c.gridx = 1;
 		c.gridy = 4;
 		c.ipadx = 200;
 		addButton.addActionListener(listener);
 		panel.add(addButton, c);
+		
+		if(TXTHandler.returnLanguage==1) {
+			frame.setTitle("Add Game to Library");
+			labelTittle.setText("Add Game");
+			addButton.setText("Add");
+			label.setText("Game Directory");
+			label2.setText("Cover Image Directory");
+		} else {
+			frame.setTitle("Adicionar Jogo na Biblioteca");
+			labelTittle.setText("Adicionar Jogo");
+			addButton.setText("Adicionar");
+			label.setText("Diretório do Jogo");
+			label2.setText("Diretório da Imagem de Capa");
+		}
 
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
@@ -121,7 +132,6 @@ public class AdicionarJogoAoPath {
 
 	public static void campoJogo() {
 		label = new JLabel();
-		label.setText("Diretório do Jogo");
 		label.setFont(new Font("Arial", 1, 19));
 		label.setForeground(Color.white);
 		c.gridx = 0;
@@ -138,13 +148,12 @@ public class AdicionarJogoAoPath {
 	}
 
 	public static void campoCover() {
-		label = new JLabel();
-		label.setText("Diretório do Cover");
-		label.setFont(new Font("Arial", 1, 19));
-		label.setForeground(Color.white);
+		label2 = new JLabel();
+		label2.setFont(new Font("Arial", 1, 19));
+		label2.setForeground(Color.white);
 		c.gridx = 0;
 		c.gridy = 3;
-		panel.add(label, c);
+		panel.add(label2, c);
 
 		textFieldCover = new JTextField();
 		textFieldCover.setFont(new Font("Arial", 0, 19));

@@ -18,6 +18,7 @@ public class PathFilesCreate {
 		String pathGameSave = home+File.separator+"GameLauncher"+File.separator+"pathGameSave.txt";
 		String pathCoverSave = home+File.separator+"GameLauncher"+File.separator+"pathCoverSave.txt";
 		String pathColorSave = home+File.separator+"GameLauncher"+File.separator+"colorSave.txt";
+		String pathLanguageSave = home+File.separator+"GameLauncher"+File.separator+"languageSave.txt";
 
 		try {
 
@@ -28,6 +29,8 @@ public class PathFilesCreate {
 			file2.createNewFile();
 			File file3 = new File(pathColorSave);
 			file3.createNewFile();
+			File file4 = new File(pathLanguageSave);
+			file4.createNewFile();
 			
 			FileReader fileReader = new FileReader(pathGameSave);
 			BufferedReader br = new BufferedReader(fileReader);
@@ -50,7 +53,21 @@ public class PathFilesCreate {
 				pW3.close();
 			}
 			
+			FileReader fileReader2 = new FileReader(pathLanguageSave);
+			BufferedReader br2 = new BufferedReader(fileReader2);
+			String linhaNewVersion = br2.readLine();
+			
+			if(linhaNewVersion==null) {
+				
+				FileWriter fileWriter = new FileWriter(pathLanguageSave);
+				PrintWriter pw4 = new PrintWriter(fileWriter);
+				pw4.println("english");
+			
+				pw4.close();
+			}
+			
 			br.close();
+			br2.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
