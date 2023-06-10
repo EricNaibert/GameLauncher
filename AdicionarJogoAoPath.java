@@ -10,11 +10,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JPanel; 
 
 public class AdicionarJogoAoPath {
 
@@ -26,8 +26,8 @@ public class AdicionarJogoAoPath {
 	private static JPanel panel;
 	public static GridBagConstraints c;
 	private static JLabel label, label2, labelTittle;
-	private static JTextField textFieldJogo;
-	private static JTextField textFieldCover;
+	private static JFileChooser textFieldJogo;
+	private static JFileChooser textFieldCover;
 	private static JButton addButton;
 	private static boolean firstTime = true;
 
@@ -64,7 +64,7 @@ public class AdicionarJogoAoPath {
 		c.ipadx = 200;
 		addButton.addActionListener(listener);
 		panel.add(addButton, c);
-		
+
 		if(TXTHandler.returnLanguage==1) {
 			frame.setTitle("Add Game to Library");
 			labelTittle.setText("Add Game");
@@ -88,40 +88,53 @@ public class AdicionarJogoAoPath {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
-			String getGamePath = textFieldJogo.getText();
-			String getCoverPath = textFieldCover.getText();
-			TXTHandler.letTXT();
-			
-			if(getGamePath.isEmpty() || getCoverPath.isEmpty()) {
-				JOptionPane.showMessageDialog(frame, "Por favor, adicione o diretório do jogo e cover");
-			} else if(getGamePath.contains("\"") || getCoverPath.contains("\"")){
-				JOptionPane.showMessageDialog(GUI.frame, "Por favor, adicione os diretórios sem aspas");
-			} else {
-				
-				if(TXTHandler.linhaGame.length()>4 && firstTime == true) {
-					firstTime = false;
-					String getSavedGamePath = TXTHandler.linhaGame.substring(1, TXTHandler.linhaGame.length()-1);
-					String getSavedCoverPath = TXTHandler.linhaCover.substring(1, TXTHandler.linhaCover.length()-1);
-					
-					String[] storageSavedGamePath = getSavedGamePath.split(", ");
-					String[] storageSavedCoverPath = getSavedCoverPath.split(", ");
 
-					for(int i = 0; i<storageSavedGamePath.length; i++) {
-						pathGame.add(storageSavedGamePath[i]);
-						pathCover.add(storageSavedCoverPath[i]);
+			try {
+				String getGamePath = textFieldJogo.getSelectedFile().getAbsolutePath();
+				String getCoverPath = textFieldCover.getSelectedFile().getAbsolutePath();
+				TXTHandler.letTXT();
+
+				if(getGamePath.isEmpty() || getCoverPath.isEmpty()) {
+					JOptionPane.showMessageDialog(frame, "Por favor, adicione o diretório do jogo e cover");
+				} else if(getGamePath.contains("\"") || getCoverPath.contains("\"")){
+					JOptionPane.showMessageDialog(GUI.frame, "Por favor, adicione os diretórios sem aspas");
+				} else {
+
+					if(TXTHandler.linhaGame.length()>4 && firstTime == true) {
+						firstTime = false;
+						String getSavedGamePath = TXTHandler.linhaGame.substring(1, TXTHandler.linhaGame.length()-1);
+						String getSavedCoverPath = TXTHandler.linhaCover.substring(1, TXTHandler.linhaCover.length()-1);
+
+						String[] storageSavedGamePath = getSavedGamePath.split(", ");
+						String[] storageSavedCoverPath = getSavedCoverPath.split(", ");
+
+						for(int i = 0; i<storageSavedGamePath.length; i++) {
+							pathGame.add(storageSavedGamePath[i]);
+							pathCover.add(storageSavedCoverPath[i]);
+						}
 					}
+
+					pathGame.add(getGamePath);
+					pathCover.add(getCoverPath);
+
+					TXTHandler.salvarTXT();
+					if(TXTHandler.returnLanguage==1) {
+						JOptionPane.showMessageDialog(frame, "Game Successfully Added");
+					} else {
+						JOptionPane.showMessageDialog(frame, "Jogo Adicionado Com Sucesso");
+					}
+					
+					firstTime = false;
+
+
 				}
 				
-				pathGame.add(getGamePath);
-				pathCover.add(getCoverPath);
-
-				TXTHandler.salvarTXT();
-				JOptionPane.showMessageDialog(frame, "Jogo Adicionado Com Sucesso");
-				textFieldJogo.setText("");
-				textFieldCover.setText("");
-				firstTime = false;
-				
+			} catch(NullPointerException e2) {
+				if(TXTHandler.returnLanguage==1) {
+					JOptionPane.showMessageDialog(frame, "Please, add the game AND the image cover directory!");
+				} else {
+					JOptionPane.showMessageDialog(frame, "Por favor, adicione o diretório do jogo E da cover image!");
+				}
 				
 			}
 
@@ -138,13 +151,34 @@ public class AdicionarJogoAoPath {
 		c.gridy = 2;
 		panel.add(label, c);
 
-		textFieldJogo = new JTextField();
-		textFieldJogo.setFont(new Font("Arial", 0, 19));
-		textFieldJogo.setBackground(Color.DARK_GRAY);
-		textFieldJogo.setForeground(Color.white);
+		ActionListener actionListener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				textFieldJogo = new JFileChooser();
+				textFieldJogo.setFont(new Font("Arial", 0, 19));
+				textFieldJogo.setBackground(Color.DARK_GRAY);
+				textFieldJogo.setForeground(Color.white);
+
+				if(textFieldJogo.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
+					JOptionPane.showMessageDialog(frame, "Saved Successfully");
+				}
+			}
+		};
+
+		JButton textFieldJogoButton = new JButton();
+		textFieldJogoButton.addActionListener(actionListener);
 		c.gridx = 1;
 		c.gridy = 2;
-		panel.add(textFieldJogo, c);
+		panel.add(textFieldJogoButton, c);
+
+		if(TXTHandler.returnLanguage==1) {
+			textFieldJogoButton.setText("Choose Directory");
+		} else {
+			textFieldJogoButton.setText("Escolha o Diretório");
+		}
+
 	}
 
 	public static void campoCover() {
@@ -155,12 +189,37 @@ public class AdicionarJogoAoPath {
 		c.gridy = 3;
 		panel.add(label2, c);
 
-		textFieldCover = new JTextField();
-		textFieldCover.setFont(new Font("Arial", 0, 19));
-		textFieldCover.setBackground(Color.DARK_GRAY);
-		textFieldCover.setForeground(Color.white);
+		ActionListener actionListener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				textFieldCover = new JFileChooser();
+				textFieldCover.setFont(new Font("Arial", 0, 19));
+				textFieldCover.setBackground(Color.DARK_GRAY);
+				textFieldCover.setForeground(Color.white);
+
+				if(textFieldCover.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
+					JOptionPane.showMessageDialog(frame, "Saved Successfully");
+				}
+
+
+			}
+		};
+
+		JButton textFieldCoverButton = new JButton();
+		textFieldCoverButton.addActionListener(actionListener);
 		c.gridx = 1;
 		c.gridy = 3;
-		panel.add(textFieldCover, c);
+		panel.add(textFieldCoverButton, c);
+
+		if(TXTHandler.returnLanguage==1) {
+			textFieldCoverButton.setText("Choose Directory");
+		} else {
+			textFieldCoverButton.setText("Escolha o Diretório");
+		}
+
+
+
 	}
 }

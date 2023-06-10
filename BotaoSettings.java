@@ -30,7 +30,6 @@ public class BotaoSettings {
 	public static void settingsButton() {
 
 		ImageIcon addSettingsIcon = new ImageIcon(images.ImagesSetUp.settingsButtonBlue);
-		@SuppressWarnings("unused")
 		ImageIcon settingsHeaderIcon = new ImageIcon(images.ImagesSetUp.settingsLabel);
 		ImageIcon settingsHeaderIconEnglish = new ImageIcon(images.ImagesSetUp.settingsLabelEnglish);
 		ImageIcon settingsFrameIcon = new ImageIcon(images.ImagesSetUp.gameLauncherLabel);
@@ -329,8 +328,9 @@ public class BotaoSettings {
 				PrintWriter printWriter = new PrintWriter(fileWriter);
 
 				printWriter.println("english");
-				JOptionPane.showMessageDialog(GUI.frame, "Language changed successfully! The program will close to save changes!");
 				printWriter.close();
+				JOptionPane.showMessageDialog(GUI.frame, "Language changed successfully! The program will close to save changes!");
+				System.exit(0);
 			} catch (IOException e2) {
 				// TODO: handle exception
 				e2.printStackTrace();

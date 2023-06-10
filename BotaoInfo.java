@@ -26,6 +26,7 @@ public class BotaoInfo {
 	
 	public static void infoButton() {
 		
+		String version = "1.4.0";
 		ImageIcon addInfoIcon = new ImageIcon(images.ImagesSetUp.infoButtonBlue);
 		infoButton = new JButton();
 		infoButton.setPreferredSize(GUI.dimension);
@@ -136,7 +137,7 @@ public class BotaoInfo {
 							+ "<p> the \"cover image\" directory.</p></html>");
 					labelInfo3.setText("<html><p><b>#3</b> - For games, the supported extensions are: \".exe\", \".jar\", \".lnk\" and \".url\".</p></html>");
 					labelInfo4.setText("<html><p><b>#4</b> - For images, the supported extensions are: \".jpeg\" and \".png\".</p></html>");
-					labelVersion.setText("Version 2.3.0");
+					labelVersion.setText("Version " + version);
 					
 					labelContact.setText("Contact me on GitHub!");
 					
@@ -147,7 +148,7 @@ public class BotaoInfo {
 							+ "<p> o diretório da \"cover image\".</p></html>");
 					labelInfo3.setText("<html><p><b>#3</b> - Para os jogos, as extensões suportadas são: \".exe\", \".jar\", \".lnk\", \".url\".</p></html>");
 					labelInfo4.setText("<html><p><b>#4</b> - Para imagens, as extensões suportadas são \".jpeg\" e \".png\".</p></html>");
-					labelVersion.setText("Versão 2.3.0");
+					labelVersion.setText("Versão " + version);
 					
 					labelContact.setText("Entre em contato comigo no GitHub!");
 				}
